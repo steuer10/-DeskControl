@@ -1,83 +1,78 @@
-# 🖥️ DeskControl
+# SportTrack
 
-> Plataforma web para auxiliar profissionais analistas de Control Desk no gerenciamento de chamados, monitoramento de infraestrutura e controle de SLA.
-
----
-
-## 📋 Descrição do Projeto
-
-Analistas de Control Desk enfrentam diariamente o desafio de gerenciar múltiplos chamados simultâneos, monitorar a infraestrutura de TI e garantir o cumprimento de SLAs — muitas vezes utilizando ferramentas dispersas e pouco integradas.
-
-**DeskControl** centraliza todas essas operações em uma única plataforma web, aumentando a produtividade do analista e a qualidade do atendimento prestado.
+> Plataforma web para gerenciamento e acompanhamento de treinos esportivos pessoais.
 
 ---
 
-## 🎯 Funcionalidades
+## Descrição do Projeto
+
+Atletas amadores não têm uma forma simples de registrar e acompanhar sua evolução nos treinos. Atualmente, utilizam cadernos, planilhas ou simplesmente não registram nada, perdendo histórico de desempenho e dificultando a evolução.
+
+**SportTrack** é uma aplicação web onde o usuário cadastra seus treinos, acompanha sua evolução ao longo do tempo e visualiza seu progresso através de um dashboard interativo.
+
+---
+
+## Funcionalidades
 
 ### Requisitos Funcionais (RF)
-- ✅ Cadastro e autenticação de usuário (login/registro com perfis: analista e admin)
-- ✅ Abertura, acompanhamento e encerramento de chamados/tickets
-- ✅ Classificação de chamados por prioridade (baixa, média, alta, crítica)
-- ✅ Painel de monitoramento de infraestrutura em tempo real (status de serviços)
-- ✅ Controle de SLA com alertas de prazo e relatórios de cumprimento
-- ✅ Histórico completo de chamados por analista
-- ✅ Dashboard com indicadores de desempenho (KPIs)
-- ✅ Geração de relatórios exportáveis (PDF/CSV)
+- Cadastro e autenticação de usuário (login/registro)
+-  Registro de treinos (data, tipo de esporte, duração, observações)
+-  Listagem e histórico completo de treinos realizados
+-  Dashboard com gráfico de evolução e estatísticas
+-  Edição e exclusão de treinos
+-  Categorização por tipo de esporte (musculação, corrida, natação, etc.)
+-  Metas semanais de treino com acompanhamento de progresso
 
 ### Requisitos Não Funcionais (RNF)
-- Interface responsiva e intuitiva para uso em múltiplos monitores
-- Autenticação segura com JWT e controle de perfis
-- Notificações em tempo real para chamados críticos
+- Interface responsiva e mobile-first
+- Autenticação segura com JWT
 - Dados persistidos em banco relacional
 - Tempo de resposta inferior a 2 segundos nas consultas
 
 ---
 
-## 🛠️ Tecnologias
+##  Tecnologias
 
 | Tecnologia | Função | Justificativa |
 |---|---|---|
-| **React** | Frontend | SPA dinâmica, ideal para dashboards em tempo real |
+| **React** | Frontend | SPA dinâmica, componentização, grande ecossistema |
 | **Node.js + Express** | Backend | Leve, rápido e mesma linguagem do frontend |
-| **PostgreSQL** | Banco de dados | Robusto para dados relacionais complexos (tickets, SLA, usuários) |
+| **PostgreSQL** | Banco de dados | Confiável para dados relacionais |
 | **Prisma ORM** | Acesso ao banco | Facilita queries e migrações de forma segura |
-| **Socket.io** | Tempo real | Notificações instantâneas para chamados críticos |
 | **JWT** | Autenticação | Stateless, seguro e simples de implementar |
-| **Chart.js** | Gráficos | Visualização de KPIs e relatórios no dashboard |
+| **Chart.js** | Gráficos | Visualização de evolução e estatísticas no dashboard |
 | **Render / Railway** | Deploy | Gratuito e prático para MVP |
 
 ---
 
-## 🗂️ Organização de Tarefas
+##  Organização de Tarefas
 
 | Semana | Foco |
 |---|---|
-| 1 | Modelagem do banco, rotas backend, autenticação e perfis |
-| 2 | CRUD de chamados, classificação por prioridade e SLA |
-| 3 | Painel de monitoramento, notificações em tempo real |
-| 4 | Dashboard com KPIs, relatórios e integração front/back |
-| 5 | Testes, ajustes finais e deploy |
+| 1 | Modelagem do banco, rotas backend e autenticação |
+| 2 | CRUD de treinos e categorização por esporte |
+| 3 | Dashboard com gráficos e metas semanais |
+| 4 | Integração front/back, testes e deploy |
 
 ---
 
 ## 🗃️ Modelagem de Dados (Resumo)
 
 ```
-Usuario         Chamado           SLA
---------        --------          --------
-id              id                id
-nome            titulo            chamado_id
-email           descricao         prazo_horas
-senha           prioridade        status
-perfil          status            cumprido
-                analista_id       
-                criado_em         
-                encerrado_em      
+Usuario           Treino              Meta
+--------          --------            --------
+id                id                  id
+nome              titulo              usuario_id
+email             tipo_esporte        treinos_semana
+senha             duracao_min         progresso
+criado_em         observacoes         ativa
+                  usuario_id          
+                  data_treino         
 ```
 
 ---
 
-## 🚀 Como Executar
+##  Como Executar
 
 ### Pré-requisitos
 - Node.js 18+
@@ -100,30 +95,26 @@ npm run dev
 
 ### Variáveis de Ambiente (.env)
 ```env
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/deskcontrol"
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/sporttrack"
 JWT_SECRET="sua_chave_secreta"
 PORT=3333
 ```
 
 ---
 
-## 📊 Indicadores do Dashboard (KPIs)
+##  Indicadores do Dashboard
 
-- Total de chamados abertos / encerrados
-- Taxa de cumprimento de SLA (%)
-- Tempo médio de resolução por analista
-- Chamados por prioridade
-- Disponibilidade dos serviços monitorados
+- Total de treinos realizados no mês
+- Tempo total treinado (horas)
+- Esporte mais praticado
+- Progresso das metas semanais (%)
+- Gráfico de frequência semanal
 
 ---
 
-## 👤 Autor
+##  Autor
 
-Desenvolvido por **[Seu Nome]**  
+Desenvolvido por **[VINICIUS STEUERNAGEL]**  
 Disciplina: Engenharia de Software  
 
----
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT.
